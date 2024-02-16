@@ -45,13 +45,19 @@
    ```
 
 ## 데이터 전처리
-
+1. `app/data` 폴더에  `teacher.mp3` `student.mp3` 파일을 위치 시킨다.
+2. `app/data/teacher_chunk`,`app/data/teacher_silence`,`app/data/student_chunk`,`app/data/student_silence` 4개 폴더 생성.
+   
 ### 오디오 파일 처리
-
-1. `teacher`와 `student`의 오디오를 10분씩 자릅니다.
-2. STT(음성 인식) 작업을 위하여 묵음 부분을 제거하여 오디오 파일을 저장합니다.
+1. `teacher.mp3`와 `student.mp3`의 오디오를 10분씩 자릅니다.
+2. 10분씩 나누어진 audio파일을 STT(음성 인식) 작업을 위하여 묵음 부분을 제거하여 오디오 파일을 저장합니다.
    ```sh
    sh preprocess.sh
+   # python chunk_file.py --file_name teacher.mp3 --file_folder ./data
+   # python chunk_file.py --file_name student.mp3 --file_folder ./data
+
+   # python remove_silence.py --file_folder ./data/teacher_chunk --output_folder ./data/teacher_silence --export_format mp3
+   # python remove_silence.py --file_folder ./data/student_chunk --output_folder ./data/student_silence --export_format wav
    ```
 
 ## OpenAI를 이용한 STT 출력과 텍스트 요약
