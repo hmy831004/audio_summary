@@ -19,7 +19,7 @@
 1. 가상환경 `bsj`를 생성합니다:
 
    ```sh
-   conda create -n bsj python=3.8
+   conda create -n bsj python=3.9
    ```
 
 2. 가상환경을 활성화합니다:
@@ -50,6 +50,9 @@
 
 1. `teacher`와 `student`의 오디오를 10분씩 자릅니다.
 2. STT(음성 인식) 작업을 위하여 묵음 부분을 제거하여 오디오 파일을 저장합니다.
+   ```sh
+   sh preprocess.sh
+   ```
 
 ## OpenAI를 이용한 STT 출력과 텍스트 요약
 
@@ -64,4 +67,12 @@
 2. `teacher`와 `student`의 오디오를 10분 단위로 묶어 OpenAI의 Chat 기능을 이용하여 텍스트를 요약합니다.
 
 이 과정들을 통해 데이터 전처리 및 요약이 이루어집니다.
+
+### gunicorn과 FastAPI를 이용한 API 서버 구축
+
+1. 서비스 실행
+   ```sh
+   gunicorn --bind 0:8500 main:app --worker-class uvicorn.workers.UvicornWorker --reload 
+   ```
+2. 브라우저 에서 `http://3.34.134.205:8500/onuii` 실행
 
