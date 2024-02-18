@@ -7,7 +7,7 @@ import re
 class SttToSummary():
 
     def __init__(self) -> None: 
-        self.client = OpenAI(api_key='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')
+        self.client = OpenAI(api_key=f'{Your_Open_API_KEY}')
 
     def stt_with_openai(self,file):
 
