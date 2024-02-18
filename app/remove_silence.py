@@ -11,6 +11,7 @@ def remove_silence(audio_path,output_path ,export_format='mp3',silence_thresh=-4
 
     Params:
       audio_path (str): 원본 오디오 파일 경로
+      output_path (str): 처리된 오디오 파일 경로
       silence_thresh (int): 무음으로 판단되는 임계값(dB)
       chunk_size (int): 무음 감지를 위한 청크 사이즈(ms)
     Returns:
@@ -28,7 +29,7 @@ def remove_silence(audio_path,output_path ,export_format='mp3',silence_thresh=-4
     for start, end in nonsilent_chunks:
         audio_processed += audio[start:end+600]
 
-    # export_format = "wav"  # \'wav\' 형식으로 저장하는 것이 일반적으로 STT에는 더 좋습니다.
+    # export_format = "wav"  # 'wav' 형식으로 저장하는 것이 일반적으로 STT에는 더 좋다고함.
     output_file_name = os.path.join(output_path,front_file_name)+'.'+ export_format
     audio_processed.export(output_file_name, format=export_format)
 
@@ -52,10 +53,9 @@ if __name__=="__main__":
     files = glob(args.file_folder+f'/*')
     print(f"parsing Files: {files}")
     
-    # audio_path = './data/student.mp3'  # .mp3, .wav 등 다양한 포맷을 지원합니다.
+    # audio_path = './data/student.mp3'  # .mp3, .wav 등 다양한 포맷을 지원
     for file in files:
         # 무음 제거
         remove_silence(file,args.output_folder,export_format=args.export_format)
-        # front_file_name = os.path.basename(file).split('.')[0]
-        # print(front_file_name)
+
 
