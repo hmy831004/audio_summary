@@ -4,6 +4,15 @@ import os
 import argparse
 
 def split_voice_file_to_chunk_size(file_folder,file_name,export_format='mp3'):
+    """
+    Params:
+      file_folder (str): 원본 오디오 파일 경로
+      file_name (str): 파일 이름
+      export_format (int): 파일 포맷 = mp3 or wav
+
+    Returns:
+        10분 단위로 나뉘어진 오디오 파일.
+    """
     # MP3 파일 로드
     file_folder = file_folder
     file_name = file_name # 여기에 파일 경로 입력
