@@ -4,14 +4,13 @@ from pydantic import BaseModel
 class Item(BaseModel):
     name: str
     description: str = None
-    price: float
     tax: float = None
     
 app = FastAPI()
 
 @app.get("/")
 async def read_root():
-    return {"message": "Hello, World!"}
+    return {"message": "Hello, Onuii World!"}
 
 @app.get("/onuii")
 async def read_root():
